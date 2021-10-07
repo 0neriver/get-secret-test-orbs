@@ -1,5 +1,5 @@
 version: 2.1
-description: one-river/get-secret
+description: oneriver/get-secret
 
 commands:
   hello:

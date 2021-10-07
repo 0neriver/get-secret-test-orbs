@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  get-secret: one-river/get-secret@0.0.1
+  get-secret: oneriver/get-secret@0.0.1
 
 jobs:
   build:
