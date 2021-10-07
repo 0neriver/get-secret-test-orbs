@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  get-secret: oneriver/get-secret-manager@0.0.9
+  get-secret: oneriver/get-secret-manager@0.0.10
 
 jobs:
   build:
