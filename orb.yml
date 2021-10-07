@@ -23,10 +23,8 @@ jobs:
       image: ubuntu-1604:202007-01
     steps:
       - checkout
-      - gcp-gke/update-kubeconfig-with-credentials:
-          cluster: test-app
-          install-kubectl: true
-          perform-login: true
+      - gcp-cli/install
+      - gcp-cli/initialize
       - run: 
           name: get latest version & set env from secret manager 
           working_directory: .
@@ -42,5 +40,5 @@ jobs:
             cat .env
     environment:
       GOOGLE_PROJECT_ID: ichilab-test-2106
-      
+
       
