@@ -17,10 +17,16 @@ orbs:
 #           command: |
 #             USERNAME="$(echo << parameters.username >>)"
 #             echo "Hello ${USERNAME}"
-jobs:
-  get-secret:
-    machine:
-      image: ubuntu-1604:202007-01
+commands:
+  get:
+    description: get-secret-manager
+    # machine:
+    #   image: ubuntu-1604:202007-01
+    parameters:
+      secret-name:
+        type: string
+        description: secret name
+        default: "test-secret"
     steps:
       - checkout
       - gcp-cli/install
@@ -29,7 +35,7 @@ jobs:
           name: get latest version & set env from secret manager 
           working_directory: .
           command: |
-            LATEST_VER=`gcloud secrets versions list test-secret --limit=1 | awk '{print $1}' | sed -n 2p`
+            LATEST_VER=`gcloud secrets versions list << parameters.secret-name >> --limit=1 | awk '{print $1}' | sed -n 2p`
             echo LATEST_VER = ${LATEST_VER}
             gcloud secrets versions access ${LATEST_VER} \
             --secret=test-secret --format='get(payload.data)' | \
@@ -38,7 +44,5 @@ jobs:
       - run:
           command: |
             cat .env
-    environment:
-      GOOGLE_PROJECT_ID: ichilab-test-2106
 
       
