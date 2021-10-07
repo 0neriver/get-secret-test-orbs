@@ -1,16 +1,16 @@
 version: 2.1
-description: oneriver/get-secret
+description: oneriver/get-secret-manager
 
 commands:
   hello:
-    description: get-secret
+    description: get-secret-manager
     parameters:
       username:
         type: string
         description: your name
     steps:
       - run: 
-          name: get-secret
+          name: get-secret-manager
           command: |
             USERNAME="$(echo << parameters.username >>)"
             echo "Hello ${USERNAME}"
