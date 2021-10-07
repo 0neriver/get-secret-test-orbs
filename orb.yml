@@ -1,23 +1,10 @@
 version: 2.1
-# description: oneriver/get-secret-manager
 description: This orbs is a test orbs to use the secret value specified from the GCP secret manager. It is for experimental purposes and should never be used for business purposes.
 
 orbs:
   gcp-cli: circleci/gcp-cli@2.2.0
 
-# commands:
-#   hello:
-#     description: get-secret-manager
-#     parameters:
-#       username:
-#         type: string
-#         description: your name
-#     steps:
-#       - run: 
-#           name: get-secret-manager
-#           command: |
-#             USERNAME="$(echo << parameters.username >>)"
-#             echo "Hello ${USERNAME}"
+
 commands:
   get:
     description: get-secret-manager
