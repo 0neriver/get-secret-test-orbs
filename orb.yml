@@ -25,7 +25,7 @@ commands:
             LATEST_VER=`gcloud secrets versions list << parameters.secret-name >> --limit=1 | awk '{print $1}' | sed -n 2p`
             echo LATEST_VER = ${LATEST_VER}
             gcloud secrets versions access ${LATEST_VER} \
-            --secret=test-secret --format='get(payload.data)' | \
+            --secret=<< parameters.secret-name >> --format='get(payload.data)' | \
             tr '_-' '/+' | \
             base64 -d >> ./.env
       - run:
