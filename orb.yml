@@ -20,15 +20,12 @@ orbs:
 commands:
   get:
     description: get-secret-manager
-    # machine:
-    #   image: ubuntu-1604:202007-01
     parameters:
       secret-name:
         type: string
         description: secret name
         default: "test-secret"
     steps:
-      - checkout
       - gcp-cli/install
       - gcp-cli/initialize
       - run: 
