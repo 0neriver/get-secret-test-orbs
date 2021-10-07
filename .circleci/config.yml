@@ -23,16 +23,24 @@ parameters:
     default: "dev:alpha"
 
 jobs:
-  # Define one or more jobs which will utilize your orb's commands and parameters to validate your changes.
-  integration-test-1:
+  # # Define one or more jobs which will utilize your orb's commands and parameters to validate your changes.
+  # integration-test-1:
+  #   docker:
+  #     - image: cimg/base:stable
+  #   steps:
+  #     - checkout
+  #     # "greet" is a sample command packaged with this orb config.
+  #     # This sample integration test will run as long as the greet command exists. Once you remove the greet command you should remove this line.
+  #     # Push new changes first, before adding new tests to your config.
+  #     - get-secret/greet
+  build:
     docker:
-      - image: cimg/base:stable
+      - image: bash
     steps:
-      - checkout
-      # "greet" is a sample command packaged with this orb config.
-      # This sample integration test will run as long as the greet command exists. Once you remove the greet command you should remove this line.
-      # Push new changes first, before adding new tests to your config.
-      - get-secret/greet
+      - run: |
+          echo "this is a test."
+      - oneriver/get-secret:
+          name: "hello"
 
 workflows:
   # Prior to producing a development orb (which requires credentials) basic validation, linting, and even unit testing can be performed.
@@ -73,7 +81,8 @@ workflows:
     when: << pipeline.parameters.run-integration-tests >>
     jobs:
       # Run any integration tests defined within the `jobs` key.
-      - integration-test-1
+      # - 
+      - build
       # Publish a semver version of the orb. relies on
       # the commit subject containing the text "[semver:patch|minor|major|skip]"
       # as that will determine whether a patch, minor or major
