@@ -9,7 +9,7 @@ jobs:
     - image: bash
     steps:
     - run: "echo 'print username'"
-    - sample-orb/hello:
+    - get-secret/hello:
         username: "oneriver"
 
 workflows:
