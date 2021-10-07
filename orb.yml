@@ -1,16 +1,46 @@
 version: 2.1
 description: oneriver/get-secret-manager
 
-commands:
-  hello:
-    description: get-secret-manager
-    parameters:
-      username:
-        type: string
-        description: your name
+orbs:
+  gcp-cli: circleci/gcp-cli@2.2.0
+
+# commands:
+#   hello:
+#     description: get-secret-manager
+#     parameters:
+#       username:
+#         type: string
+#         description: your name
+#     steps:
+#       - run: 
+#           name: get-secret-manager
+#           command: |
+#             USERNAME="$(echo << parameters.username >>)"
+#             echo "Hello ${USERNAME}"
+jobs:
+  get-secret:
+    machine:
+      image: ubuntu-1604:202007-01
     steps:
+      - checkout
+      - gcp-gke/update-kubeconfig-with-credentials:
+          cluster: test-app
+          install-kubectl: true
+          perform-login: true
       - run: 
-          name: get-secret-manager
+          name: get latest version & set env from secret manager 
+          working_directory: .
           command: |
-            USERNAME="$(echo << parameters.username >>)"
-            echo "Hello ${USERNAME}"
+            LATEST_VER=`gcloud secrets versions list test-secret --limit=1 | awk '{print $1}' | sed -n 2p`
+            echo LATEST_VER = ${LATEST_VER}
+            gcloud secrets versions access ${LATEST_VER} \
+            --secret=test-secret --format='get(payload.data)' | \
+            tr '_-' '/+' | \
+            base64 -d >> ./env
+      - run:
+          command: |
+            cat .env
+    environment:
+      GOOGLE_PROJECT_ID: ichilab-test-2106
+      
+      
