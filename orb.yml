@@ -9,10 +9,21 @@ commands:
   get:
     description: get-secret-manager
     parameters:
+      gcloud-service-key:
+        type: env_var_name
+        default: GCLOUD_SERVICE_KEY
+      google-compute-region:
+        type: env_var_name
+        default: GOOGLE_COMPUTE_REGION
+      google-compute-zone:
+        type: env_var_name
+        default: GOOGLE_COMPUTE_ZONE
+      ggoogle-project-id:
+        type: env_var_name
+        default: GOOGLE_PROJECT_ID
       secret-name:
         type: string
         description: secret name
-        default: "test-secret"
     steps:
       - gcp-cli/install
       - gcp-cli/initialize
