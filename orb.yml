@@ -16,6 +16,8 @@ commands:
     steps:
       - gcp-cli/install
       - gcp-cli/initialize
+      - run: |
+          echo << parameters.secret-name >>
       - run: 
           name: get latest version & set env from secret manager 
           working_directory: .

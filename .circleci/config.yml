@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  get-secret: oneriver/get-secret-manager@0.0.12
+  get-secret: oneriver/get-secret-manager@0.0.13
 
 jobs:
   build:
@@ -9,7 +9,6 @@ jobs:
     - image: cimg/base:2021.04
     steps:
     - checkout
-    - run: "echo 'print username'"
     - get-secret/get:
         secret-name : ci
 
