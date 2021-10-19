@@ -1,6 +1,6 @@
 description: get secret manager value from GCP
-orbs:
-  gcp-cli: circleci/gcp-cli@2.2.0
+# orbs:
+#   gcp-cli: circleci/gcp-cli@2.2.0
 docker:
   - image: cimg/base:2021.04
 parameters:
