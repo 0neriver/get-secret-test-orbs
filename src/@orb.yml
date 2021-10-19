@@ -32,7 +32,7 @@ commands:
     steps:
       - gcp-cli/install
       - gcp-cli/initialize
-      - run: 
+      - run:
           name: get latest version
           working_directory: .
           environment:
