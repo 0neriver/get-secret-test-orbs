@@ -8,7 +8,7 @@ orbs:
   gcp-cli: circleci/gcp-cli@2.2.0
 
 commands:
-  get-secret-manager:
+  get:
     description: get secret manager value from GCP
     parameters:
       gcloud-service-key:

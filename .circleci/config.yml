@@ -21,7 +21,7 @@ jobs:
     - image: cimg/base:2021.04
     steps:
     - checkout
-    - get-secret/get-secret-manager:
+    - get-secret/get:
         secret-name : ci
         output-path : env
 
