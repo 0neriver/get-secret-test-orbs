@@ -13,7 +13,7 @@ parameters:
     default: false
   dev-orb-version:
     type: string
-    default: "dev:frist"
+    default: "dev:alpha"
 
 jobs:
   build:
