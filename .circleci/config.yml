@@ -54,7 +54,9 @@ workflows:
           requires:
             - orb-tools/publish-dev
       
-      - run: cat "/home/circleci/project/workspace/orb.yml"
+      - check-orb:
+          steps:
+            run: cat "/home/circleci/project/workspace/orb.yml"
 
   integration-test_deploy:
     when: << pipeline.parameters.run-integration-tests >>
