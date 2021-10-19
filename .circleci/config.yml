@@ -15,10 +15,6 @@ parameters:
     type: string
     default: "dev:first"
 
-commands:
-  check-orb:
-    steps:
-      - run: cat /home/circleci/project/workspace/orb.yml
 
 jobs:
   get-secret-manager:
@@ -57,7 +53,8 @@ workflows:
           context: orb-publishing
           requires:
             - orb-tools/publish-dev
-      - check-orb
+      
+      - run: cat "/home/circleci/project/workspace/orb.yml"
 
   integration-test_deploy:
     when: << pipeline.parameters.run-integration-tests >>
