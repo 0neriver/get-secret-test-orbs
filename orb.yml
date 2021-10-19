@@ -23,10 +23,11 @@ commands:
         default: GOOGLE_PROJECT_ID
       output-path:
         default: .
+        description: output path
         type: string
       secret-name:
-        type: string
         description: secret name
+        type: string
     steps:
       - gcp-cli/install
       - gcp-cli/initialize
