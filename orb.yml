@@ -46,7 +46,7 @@ commands:
               base64 -d >> ./env
             cat ./env
           environment:
-            OUTPUT_PATH: << parameters.output-path >>
+            # OUTPUT_PATH: << parameters.output-path >>
             SECRET_NAME: << parameters.secret-name >>
 
       
