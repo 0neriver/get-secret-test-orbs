@@ -21,14 +21,22 @@ commands:
       ggoogle-project-id:
         type: env_var_name
         default: GOOGLE_PROJECT_ID
+      output-path:
+        default: .
+        type: string
       secret-name:
         type: string
         description: secret name
     steps:
       - gcp-cli/install
       - gcp-cli/initialize
-      - run: |
-          echo << parameters.secret-name >>
+      - run:
+          command: |
+            echo output path = << parameters.output-path >>
+            echo secret name = << parameters.secret-name >>
+          environment:
+            OUTPUT_PATH: << parameters.output-path >>
+            SECRET_NAME: << parameters.secret-name >>
       - run: 
           name: get latest version & set env from secret manager 
           working_directory: .
@@ -38,9 +46,9 @@ commands:
             gcloud secrets versions access ${LATEST_VER} \
             --secret=<< parameters.secret-name >> --format='get(payload.data)' | \
             tr '_-' '/+' | \
-            base64 -d >> ./.env
+            base64 -d >> ${OUTPUT_PATH}
       - run:
           command: |
-            cat ./.env
+            cat ${OUTPUT_PATH}
 
       
