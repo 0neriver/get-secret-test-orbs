@@ -11,7 +11,7 @@ jobs:
     - checkout
     - get-secret/get:
         secret-name : ci
-        output-path : ./.env
+        output-path : .
 
 workflows:
   main:

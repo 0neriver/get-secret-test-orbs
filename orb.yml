@@ -49,6 +49,6 @@ commands:
             base64 -d >> ./${OUTPUT_PATH}
       - run:
           command: |
-            cat ${OUTPUT_PATH}
+            ls ${OUTPUT_PATH}
 
       
