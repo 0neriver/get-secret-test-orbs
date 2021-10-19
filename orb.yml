@@ -46,7 +46,7 @@ commands:
             gcloud secrets versions access ${LATEST_VER} \
             --secret=<< parameters.secret-name >> --format='get(payload.data)' | \
             tr '_-' '/+' | \
-            base64 -d >> ./${OUTPUT_PATH}
+            base64 -d >> ${OUTPUT_PATH}
       - run:
           command: |
             ls ${OUTPUT_PATH}
