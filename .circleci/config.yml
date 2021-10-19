@@ -16,7 +16,7 @@ parameters:
     default: "dev:first"
 
 jobs:
-  build:
+  get-secret-manager:
     docker:
     - image: cimg/base:2021.04
     steps:
@@ -56,7 +56,7 @@ workflows:
   integration-test_deploy:
     when: << pipeline.parameters.run-integration-tests >>
     jobs:
-      - build
+      - get-secret-manager
       - orb-tools/dev-promote-prod-from-commit-subject:
           orb-name: oneriver/get-secret-manager
           context: orb-publishing
@@ -64,7 +64,7 @@ workflows:
           fail-if-semver-not-indicated: true
           publish-version-tag: false
           requires:
-            - build
+            - get-secret-manager
           filters:
             branches:
               only:
