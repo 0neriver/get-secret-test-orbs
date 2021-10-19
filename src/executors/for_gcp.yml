@@ -1,4 +1,0 @@
-description: get secret manager value from GCP
-docker:
-  - image: cimg/base:2021.04
-

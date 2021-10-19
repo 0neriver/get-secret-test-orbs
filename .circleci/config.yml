@@ -13,7 +13,7 @@ parameters:
     default: false
   dev-orb-version:
     type: string
-    default: "dev:first"
+    default: "dev:dev"
 
 jobs:
   get-secret-manager:
@@ -21,7 +21,7 @@ jobs:
     - image: cimg/base:2021.04
     steps:
     - checkout
-    - get-secret/get:
+    - get-secret/gcp:
         secret-name : ci
         output-path : env
 

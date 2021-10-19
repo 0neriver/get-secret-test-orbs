@@ -6,7 +6,6 @@ display:
 
 orbs:
   gcp-cli: circleci/gcp-cli@2.2.0
-  # gcp: circleci/gcp-cli@2.2.0
 
 # commands:
 #   gcp:
