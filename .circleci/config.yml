@@ -26,6 +26,7 @@ jobs:
         secret-name : ci
         output-path : env
 
+
 workflows:
   test-pack:
     unless: << pipeline.parameters.run-integration-tests >>
@@ -53,10 +54,6 @@ workflows:
           context: orb-publishing
           requires:
             - orb-tools/publish-dev
-      
-      - check-orb:
-          steps:
-            run: cat "/home/circleci/project/workspace/orb.yml"
 
   integration-test_deploy:
     when: << pipeline.parameters.run-integration-tests >>
