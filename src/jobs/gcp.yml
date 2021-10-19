@@ -1,0 +1,12 @@
+description: get secret manager value from GCP
+executor: for_gcp
+steps:
+  - gcp-cli/install
+  - gcp-cli/initialize
+  - run:
+      name: get latest version
+      working_directory: .
+      environment:
+        SECRET_NAME: << parameters.secret-name >>
+        OUTPUT_PATH: << parameters.output-path >>
+      command: << include(scripts/get-gcp-secret-manager.sh) >>
