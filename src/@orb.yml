@@ -4,8 +4,9 @@ description: oneriver/common
 display:
   source_url: "https://github.com/0neriver/get-secret-test-orbs"
 
-# orbs:
-#   gcp-cli: circleci/gcp-cli@2.2.0
+orbs:
+  # gcp-cli: circleci/gcp-cli@2.2.0
+  gcp: circleci/gcp-cli@2.2.0
 
 # commands:
 #   gcp:
