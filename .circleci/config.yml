@@ -13,7 +13,7 @@ parameters:
     default: false
   dev-orb-version:
     type: string
-    default: "dev:dev"
+    default: "dev:first"
 
 jobs:
   get-secret-manager:
