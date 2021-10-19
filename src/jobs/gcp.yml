@@ -1,5 +1,7 @@
 description: get secret manager value from GCP
 executor: for_gcp
+orbs:
+  gcp-cli: circleci/gcp-cli@2.2.0
 steps:
   - gcp-cli/install
   - gcp-cli/initialize
