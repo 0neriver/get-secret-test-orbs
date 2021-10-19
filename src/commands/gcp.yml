@@ -1,0 +1,32 @@
+description: get secret manager value from GCP
+orbs:
+  gcp-cli: circleci/gcp-cli@2.2.0
+parameters:
+  gcloud-service-key:
+    type: env_var_name
+    default: GCLOUD_SERVICE_KEY
+  google-compute-region:
+    type: env_var_name
+    default: GOOGLE_COMPUTE_REGION
+  google-compute-zone:
+    type: env_var_name
+    default: GOOGLE_COMPUTE_ZONE
+  google-project-id:
+    type: env_var_name
+    default: GOOGLE_PROJECT_ID
+  secret-name:
+    type: string
+    default: SECRET_NAME
+  output-path:
+    type: string
+    default: .
+steps:
+  - gcp-cli/install
+  - gcp-cli/initialize
+  - run:
+      name: get latest version
+      working_directory: .
+      environment:
+        SECRET_NAME: << parameters.secret-name >>
+        OUTPUT_PATH: << parameters.output-path >>
+      command: << include(scripts/get-gcp-secret-manager.sh) >>
