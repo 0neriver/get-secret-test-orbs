@@ -39,7 +39,7 @@ workflows:
           path: ./src/tests
 
       - orb-tools/publish-dev:
-          orb-name: oneriver/get-secret
+          orb-name: oneriver/get-secret-manager
           context: orb-publishing
           requires:
             - orb-tools/lint
