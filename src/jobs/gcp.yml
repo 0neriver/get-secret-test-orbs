@@ -1,5 +1,24 @@
 description: get secret manager value from GCP
 executor: for_gcp
+parameters:
+  gcloud-service-key:
+    type: env_var_name
+    default: GCLOUD_SERVICE_KEY
+  google-compute-region:
+    type: env_var_name
+    default: GOOGLE_COMPUTE_REGION
+  google-compute-zone:
+    type: env_var_name
+    default: GOOGLE_COMPUTE_ZONE
+  google-project-id:
+    type: env_var_name
+    default: GOOGLE_PROJECT_ID
+  secret-name:
+    type: string
+    default: SECRET_NAME
+  output-path:
+    type: string
+    default: .
 steps:
   - gcp-cli/install
   - gcp-cli/initialize
