@@ -1,15 +1,41 @@
 version: 2.1
+description: oneriver/common
 
-description: >
-  Sample orb description
-# What will your orb allow users to accomplish?
-# Descriptions should be short, simple, and informative.
-
-# This information will be displayed in the orb registry and is not mandatory.
 display:
-  home_url: "https://www.website.com/docs"
-  source_url: "https://www.github.com/EXAMPLE_ORG/EXAMPLE_PROJECT"
+  source_url: "https://github.com/0neriver/get-secret-test-orbs"
 
-# If your orb requires other orbs, you can import them like this. Otherwise remove the "orbs" stanza.
-# orbs:
-#  hello: circleci/hello-build@0.0.5
+orbs:
+  gcp-cli: circleci/gcp-cli@2.2.0
+
+commands:
+  get-gcp-secret-manager:
+    description: get secret manager value from GCP
+    parameters:
+      gcloud-service-key:
+        type: env_var_name
+        default: GCLOUD_SERVICE_KEY
+      google-compute-region:
+        type: env_var_name
+        default: GOOGLE_COMPUTE_REGION
+      google-compute-zone:
+        type: env_var_name
+        default: GOOGLE_COMPUTE_ZONE
+      google-project-id:
+        type: env_var_name
+        default: GOOGLE_PROJECT_ID
+      secret-name:
+        type: string
+        default: SECRET_NAME
+      output-path:
+        type: string
+        default: .
+    steps:
+      - gcp-cli/install
+      - gcp-cli/initialize
+      - run: 
+          name: get latest version
+          working_directory: .
+          environment:
+            SECRET_NAME: << parameters.secret-name >>
+            OUTPUT_PATH: << parameters.output-path >>
+          command: << include(scripts/get-gcp-secret-manager.sh) >>
