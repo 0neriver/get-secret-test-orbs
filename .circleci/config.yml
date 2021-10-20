@@ -23,7 +23,7 @@ jobs:
     steps:
     - checkout
     - run: echo <<pipeline.parameters.dev-orb-version>>
-    - get-secret/test:
+    - get-secret/get:
         secret-name : ci
         output-path : env
 
