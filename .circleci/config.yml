@@ -23,7 +23,7 @@ jobs:
     steps:
     - checkout
     - run: echo <<pipeline.parameters.dev-orb-version>>
-    - get-secret/get
+    - get-secret/gcp
         # secret-name : ci
         # output-path : env
 
@@ -56,19 +56,19 @@ workflows:
           requires:
             - orb-tools/publish-dev
 
-  integration-test_deploy:
-    when: << pipeline.parameters.run-integration-tests >>
-    jobs:
-      # - get-secret-manager
-      - orb-tools/dev-promote-prod-from-commit-subject:
-          orb-name: oneriver/get-secret-manager
-          context: orb-publishing
-          add-pr-comment: false
-          fail-if-semver-not-indicated: true
-          publish-version-tag: false
-          requires:
-            - get-secret-manager
-          filters:
-            branches:
-              only:
-                - alpha
+  # integration-test_deploy:
+  #   when: << pipeline.parameters.run-integration-tests >>
+  #   jobs:
+  #     - get-secret-manager
+  #     - orb-tools/dev-promote-prod-from-commit-subject:
+  #         orb-name: oneriver/get-secret-manager
+  #         context: orb-publishing
+  #         add-pr-comment: false
+  #         fail-if-semver-not-indicated: true
+  #         publish-version-tag: false
+  #         requires:
+  #           - get-secret-manager
+  #         filters:
+  #           branches:
+  #             only:
+  #               - alpha
