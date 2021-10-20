@@ -24,8 +24,8 @@ jobs:
     - checkout
     - run: echo <<pipeline.parameters.dev-orb-version>>
     - get-secret/get
-        # secret-name : ci
-        # output-path : env
+        secret-name : ci
+        output-path : env
 
 
 workflows:
@@ -59,8 +59,7 @@ workflows:
   integration-test_deploy:
     when: << pipeline.parameters.run-integration-tests >>
     jobs:
-      # - get-secret-manager
-      - get-secret/test
+      - get-secret-manager
       - orb-tools/dev-promote-prod-from-commit-subject:
           orb-name: oneriver/get-secret-manager
           context: orb-publishing
