@@ -24,8 +24,8 @@ jobs:
     - checkout
     - run: echo <<pipeline.parameters.dev-orb-version>>
     - get-secret/gcp
-        # secret-name : ci
-        # output-path : env
+        secret-name : ci
+        output-path : env
 
 
 workflows:

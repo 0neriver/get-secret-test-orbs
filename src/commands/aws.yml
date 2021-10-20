@@ -1,2 +1,2 @@
 steps:
-  - run: echo "test"
+  - run: echo "aws test"
