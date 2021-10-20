@@ -1,0 +1,10 @@
+docker:
+  - image: cimg/base:2021.04
+
+steps:
+  # Setup
+  - when:
+      condition: << parameters.checkout >>
+      steps:
+        - checkout
+        - run: echo "test"
